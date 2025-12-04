@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Scoreboard from "./components/Scoreboard";
 
 function App() {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [scoreData, setScoreData] = useState({ currentScore: 0, bestScore: 0 });
 
   useEffect(() => {
     fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams")
@@ -28,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <h1>Memory Card</h1>
-      <p>API Data in the browser console!</p>
+      <Scoreboard scoreData={scoreData} />
       <p>Number Of Teams: {teams.length}</p>
     </div>
   );
