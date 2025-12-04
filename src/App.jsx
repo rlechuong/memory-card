@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Scoreboard from "./components/Scoreboard";
+import Card from "./components/Card";
 
 function App() {
   const [teams, setTeams] = useState([]);
@@ -32,6 +33,8 @@ function App() {
       <h1>Memory Card</h1>
       <Scoreboard scoreData={scoreData} />
       <p>Number Of Teams: {teams.length}</p>
+
+      {teams.length > 0 && <Card team={teams[0]} />}
     </div>
   );
 }
