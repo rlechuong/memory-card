@@ -7,6 +7,7 @@ import Scoreboard from "./components/Scoreboard";
 function App() {
   const [teams, setTeams] = useState([]);
   const [activeTeams, setActiveTeams] = useState([]);
+  const [clickedTeams, setClickedTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [scoreData, setScoreData] = useState({ currentScore: 0, bestScore: 0 });
 
@@ -22,7 +23,26 @@ function App() {
   };
 
   const handleCardClick = (teamID) => {
-    console.log("Clicked Team ID:", teamID);
+    if (clickedTeams.includes(teamID)) {
+      console.log("Clicked Team ID:", teamID);
+      console.log("Already Clicked! Game Over.");
+
+      const currentScore = scoreData.currentScore;
+
+      if (scoreData.currentScore > scoreData.bestScore) {
+        setScoreData({ currentScore: 0, bestScore: currentScore });
+      } else {
+        setScoreData({ ...scoreData, currentScore: 0 });
+      }
+
+      setClickedTeams([]);
+    } else {
+      console.log("Clicked Team ID:", teamID);
+      console.log("New Team! +1 Score.");
+
+      setClickedTeams([...clickedTeams, teamID]);
+      setScoreData({ ...scoreData, currentScore: scoreData.currentScore + 1 });
+    }
   };
 
   useEffect(() => {
