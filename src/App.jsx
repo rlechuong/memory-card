@@ -11,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [scoreData, setScoreData] = useState({ currentScore: 0, bestScore: 0 });
 
-  const getRandomTeams = (teams, count) => {
+  const shuffleTeams = (teams) => {
     const shuffled = [...teams];
 
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -19,7 +19,11 @@ function App() {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    return shuffled.slice(0, count);
+    return shuffled;
+  };
+
+  const getRandomTeams = (teams, count) => {
+    return shuffleTeams(teams).slice(0, count);
   };
 
   const handleCardClick = (teamID) => {
@@ -42,6 +46,7 @@ function App() {
 
       setClickedTeams([...clickedTeams, teamID]);
       setScoreData({ ...scoreData, currentScore: scoreData.currentScore + 1 });
+      setActiveTeams(shuffleTeams(activeTeams));
     }
   };
 
