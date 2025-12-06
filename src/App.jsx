@@ -28,7 +28,6 @@ function App() {
 
   const handleCardClick = (teamID) => {
     if (clickedTeams.includes(teamID)) {
-      console.log("Clicked Team ID:", teamID);
       console.log("Already Clicked! Game Over.");
 
       const currentScore = scoreData.currentScore;
@@ -41,12 +40,24 @@ function App() {
 
       setClickedTeams([]);
     } else {
-      console.log("Clicked Team ID:", teamID);
       console.log("New Team! +1 Score.");
 
-      setClickedTeams([...clickedTeams, teamID]);
-      setScoreData({ ...scoreData, currentScore: scoreData.currentScore + 1 });
-      setActiveTeams(shuffleTeams(activeTeams));
+      const newClickedTeams = [...clickedTeams, teamID];
+      const newScore = scoreData.currentScore + 1;
+
+      if (newClickedTeams.length === 12) {
+        console.log("You Win!");
+
+        const finalBestScore = newScore > scoreData.bestScore ? newScore : scoreData.bestScore;
+
+        setScoreData({ currentScore: 0, bestScore: finalBestScore });
+        setClickedTeams([]);
+        setActiveTeams(getRandomTeams(teams, 12));
+      } else {
+        setScoreData({ ...scoreData, currentScore: newScore });
+        setClickedTeams(newClickedTeams);
+        setActiveTeams(shuffleTeams(activeTeams));
+      }
     }
   };
 
