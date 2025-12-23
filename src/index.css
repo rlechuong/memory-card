@@ -53,6 +53,7 @@ h6 {
 p {
   text-wrap: pretty;
 }
+
 h1,
 h2,
 h3,
@@ -65,4 +66,39 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+:root {
+  /* Material Design Dark Theme Colors */
+  --surface-bg: #121212;
+  --surface-elevated: #1e1e1e;
+  --primary: #4caf50;
+  --primary-light: #66bb6a;
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --success: #4caf50;
+  --error: #ef5350;
+
+  /* Spacing */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Shadows (subtle for dark theme) */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  background-color: var(--surface-bg);
+  color: var(--text-primary);
+  font-family: "Roboto", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
 }

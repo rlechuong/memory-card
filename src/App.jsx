@@ -91,20 +91,27 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="App">
+        <div className="loading-container">
+          <h2>Loading NBA Teams...</h2>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="App">
       <h1>Memory Card</h1>
-      <Scoreboard scoreData={scoreData} />
       <GameStatus
         gameStatus={gameStatus}
+        clickedTeams={clickedTeams}
         scoreData={scoreData}
         onPlayAgain={handlePlayAgain}
         onTryAgain={handleTryAgain}
         onNewCards={handleNewCards}
       />
+      <Scoreboard scoreData={scoreData} />
       <GameBoard activeTeams={activeTeams} onCardClick={handleCardClick} />
     </div>
   );

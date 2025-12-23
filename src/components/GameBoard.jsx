@@ -1,4 +1,5 @@
 import Card from "./Card";
+import "../styles/GameBoard.css";
 
 function GameBoard({ activeTeams, onCardClick }) {
   return (
